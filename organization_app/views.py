@@ -1,8 +1,10 @@
 from django.shortcuts import render
 
+from .models import Department
+
 
 def index(request):
     context = {
-        'test': 'test',
+        'departments': Department.objects.all(),
     }
     return render(request, 'index.html', context)
