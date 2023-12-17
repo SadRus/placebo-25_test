@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from .models import Department
+from .models import Department, Role
 
 
 class DepartmentSerializer(ModelSerializer):
@@ -11,3 +11,13 @@ class DepartmentSerializer(ModelSerializer):
     def create(self, validated_data):
         department = Department.objects.create(**validated_data)
         return department
+
+
+class RoleSerializer(ModelSerializer):
+    class Meta:
+        model = Role
+        fields = ['name', 'department']
+
+    def create(self, validated_data):
+        role = Role.objects.create(**validated_data)
+        return role

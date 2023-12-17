@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import generics
 
-from .models import Department
-from .serializers import DepartmentSerializer
+from .models import Department, Role
+from .serializers import DepartmentSerializer, RoleSerializer
 
 
 def index(request):
@@ -17,5 +17,6 @@ class DepartmentAPIList(generics.ListCreateAPIView):
     serializer_class = DepartmentSerializer
 
 
-def roles_list_api(request):
-    pass
+class RoleAPIList(generics.ListCreateAPIView):
+    queryset = Role.objects.all()
+    serializer_class = RoleSerializer
