@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import Group, AbstractUser
 
 from mptt.models import MPTTModel, TreeForeignKey
 
@@ -42,16 +43,11 @@ class Department(MPTTModel):
         return self.title
 
 
-class Role(models.Model):
-    name = models.CharField(
-        'Название',
-        max_length=100,
-    )
+class Role(Group):
     department = models.ManyToManyField(
         'Department',
         verbose_name='Подразделение',
         blank=True,
-        null=True,
         related_name='roles',
     )
 
@@ -59,26 +55,12 @@ class Role(models.Model):
         return self.name
 
 
-class Unit(models.Model):
-    name = models.CharField(
-        'Имя',
-        max_length=100,
-    )
+class Unit(AbstractUser):
     department = models.ForeignKey(
         'Department',
         verbose_name='Подразделение',
         on_delete=models.SET_NULL,
-        blank=True,
         null=True,
+        blank=True,
         related_name='units',
     )
-    role = models.ManyToManyField(
-        'Role',
-        verbose_name='Роль',
-        blank=True,
-        null=True,
-        related_name='units',
-    )
-
-    def __str__(self):
-        return self.name
