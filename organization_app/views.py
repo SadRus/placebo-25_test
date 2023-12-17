@@ -17,6 +17,16 @@ class DepartmentAPIList(generics.ListCreateAPIView):
     serializer_class = DepartmentSerializer
 
 
+class DepartmentAPIDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Department.objects.all()
+    serializer_class = DepartmentSerializer
+
+
 class RoleAPIList(generics.ListCreateAPIView):
+    queryset = Role.objects.all()
+    serializer_class = RoleSerializer
+
+
+class RoleAPIDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Role.objects.all()
     serializer_class = RoleSerializer
