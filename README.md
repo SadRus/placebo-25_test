@@ -22,10 +22,29 @@ python -m venv venv
 pip install -r requirements.txt
 ```
 
-Запустите сервер:
+Создайте файл базы данных SQLite и отмигрируйте её следующей командой:
+```sh
+python manage.py migrate
+```
 
+Создайте учетную запись администратора:
+```sh
+python manage.py createsuperuser
+```
+
+Запустите сервер:
 ```sh
 python manage.py runserver
 ```
 
 Откройте сайт в браузере по адресу [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
+
+
+### API 
+http://127.0.0.1:8000/api/departments/ - получение всех подразделений и добавление новых (методы GET, POST)
+
+http://127.0.0.1:8000/api/departments/{id}/ - получение конкретного подразделения по id, редактирование и удаление (методы GET, POST, PUT, DELETE)
+
+http://127.0.0.1:8000/api/roles/ - получение всех должностей и добавление новых (методы GET, POST)
+
+http://127.0.0.1:8000/api/roles/{id}/ - получение конкретной должности по id, редактирование и удаление  (методы GET, POST, PUT, DELETE)
